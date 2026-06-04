@@ -2,60 +2,231 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>My portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushan Prajapati — Full Stack Developer / DevOps Engineer</title>
+    <meta name="description" content="Portfolio of Sushan Prajapati, Java Full Stack Developer and DevOps Engineer specializing in the MERN stack, Spring Boot, Docker, and Kubernetes.">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main">
-         <div class="navbar">
-            
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="skill.html">SKILL</a></li> 
-                <li><a href="#">MY WORKS</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
+    <!-- ===== Navbar ===== -->
+    <header class="navbar" id="navbar">
+        <a href="#home" class="brand">Sushan<span>.</span></a>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-         </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-         <div class="info">
-            <h3>Hi, I'm Sushan.</h3>
-            <h1>Full Stack developer / DevOps Engineer</h1>
-            <p>Highly motivated and detail-oriented Java Full Stack Developer with hands-on experience in building and deploying scalable web applications using the MERN stack and core Java technologies. Trained in DevOps tools and practices including Docker, Jenkins, GitHub, and Kubernetes. Strong understanding of software development life cycle, RESTful APIs, and microservices architecture. Quick learner with excellent problem-solving skills, currently seeking full-time opportunities to contribute to innovative software engineering and DevOps teams.</p>
-         </div>
+    <!-- ===== Hero / Home ===== -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-greeting">Hi, I'm Sushan</p>
+            <h1 class="hero-title">Full Stack Developer<br><span>&amp; DevOps Engineer</span></h1>
+            <p class="hero-sub">
+                I build and deploy scalable web applications with the MERN stack and core Java,
+                backed by modern DevOps practices like Docker, Jenkins, and Kubernetes.
+            </p>
+            <div class="hero-actions">
+                <a href="#works" class="btn btn-primary">View My Work</a>
+                <a href="files/SushanCv.pdf" download="Sushan_Resume.pdf" class="btn btn-ghost">Download Resume</a>
+            </div>
+            <div class="hero-socials">
+                <a href="https://www.linkedin.com/in/sushan-prajapati-149120186/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+                <a href="https://github.com/Sushant9818" target="_blank" rel="noopener" aria-label="GitHub">
+                    <ion-icon name="logo-github"></ion-icon>
+                </a>
+                <a href="mailto:prasusan123@gmail.com" aria-label="Email">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </a>
+            </div>
+        </div>
+        <a href="#about" class="scroll-hint" aria-label="Scroll down">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        </a>
+    </section>
 
-         <div class="icons">
-            <a href="https://www.linkedin.com/in/sushan-prajapati-149120186/"><ion-icon name="logo-linkedin"></ion-icon></a>
-            <a href="https://github.com/Sushant9818"><ion-icon name="logo-github"></ion-icon></a>
-
-            <div class="resume">
-                <!-- View PDF inline -->
-        
-            
-                <!-- Download button -->
+    <!-- ===== About ===== -->
+    <section class="section about" id="about">
+        <div class="section-head">
+            <span class="eyebrow">01 — About</span>
+            <h2>Who I am</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
                 <p>
-                    <a href="files/SushanCv.pdf" download="Sushan_Resume.pdf" class="download-btn">Download My Resume (PDF)</a>
+                    I'm a highly motivated and detail-oriented <strong>Java Full Stack Developer</strong>
+                    with hands-on experience building and deploying scalable web applications using the
+                    MERN stack and core Java technologies.
+                </p>
+                <p>
+                    I'm trained in DevOps tools and practices including <strong>Docker, Jenkins, GitHub,
+                    and Kubernetes</strong>, with a strong understanding of the software development life
+                    cycle, RESTful APIs, and microservices architecture. I'm a quick learner with strong
+                    problem-solving skills, currently seeking full-time opportunities to contribute to
+                    innovative software engineering and DevOps teams.
                 </p>
             </div>
-
-         </div>
-
-         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-         <div  class="skill">
-            <h1>MY SKILL</h1>
-            <h3>Languages: Java, JavaScript (ES6+), HTML, CSS, C, C++, Python</h3>
-            <h3>Frontend: React.js, Redux, Tailwind CSS, Bootstrap, Material UI, Ant Design</h3>
-            <h3>Backend: Node.js, Express.js, Spring Boot, REST APIs</h3>
-            <h3>Databases: MongoDB, MySQL</h3>
-            <h3>DevOps & Tools: Docker, Jenkins, Git, GitHub, Kubernetes (Basics), Nginx</h3>
-            <h3>Others: JWT, Multer, Socket.io, Axios, GridFS, Leaflet, Formik, Yup, Bcrypt, Moment.js</h3>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-num">MERN</span>
+                    <span class="stat-label">Full Stack</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">Java</span>
+                    <span class="stat-label">Spring Boot</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">DevOps</span>
+                    <span class="stat-label">Docker · K8s</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">REST</span>
+                    <span class="stat-label">APIs · Microservices</span>
+                </div>
+            </div>
         </div>
+    </section>
 
-         <div  class="contact">
-            <h3>Number : 5103385528</h3>
-            <h3>EMAIL : prasusan123@gmail.com</h3>
+    <!-- ===== Skills ===== -->
+    <section class="section skills" id="skills">
+        <div class="section-head">
+            <span class="eyebrow">02 — Skills</span>
+            <h2>What I work with</h2>
         </div>
-    </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <ion-icon name="code-slash-outline"></ion-icon>
+                <h3>Languages</h3>
+                <p>Java, JavaScript (ES6+), HTML, CSS, C, C++, Python</p>
+            </div>
+            <div class="skill-card">
+                <ion-icon name="logo-react"></ion-icon>
+                <h3>Frontend</h3>
+                <p>React.js, Redux, Tailwind CSS, Bootstrap, Material UI, Ant Design</p>
+            </div>
+            <div class="skill-card">
+                <ion-icon name="server-outline"></ion-icon>
+                <h3>Backend</h3>
+                <p>Node.js, Express.js, Spring Boot, REST APIs</p>
+            </div>
+            <div class="skill-card">
+                <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                <h3>Databases</h3>
+                <p>MongoDB, MySQL</p>
+            </div>
+            <div class="skill-card">
+                <ion-icon name="cloud-outline"></ion-icon>
+                <h3>DevOps &amp; Tools</h3>
+                <p>Docker, Jenkins, Git, GitHub, Kubernetes (Basics), Nginx</p>
+            </div>
+            <div class="skill-card">
+                <ion-icon name="extension-puzzle-outline"></ion-icon>
+                <h3>Libraries &amp; Others</h3>
+                <p>JWT, Multer, Socket.io, Axios, GridFS, Leaflet, Formik, Yup, Bcrypt, Moment.js</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Works ===== -->
+    <section class="section works" id="works">
+        <div class="section-head">
+            <span class="eyebrow">03 — Works</span>
+            <h2>Selected projects</h2>
+        </div>
+        <div class="works-grid">
+            <article class="work-card">
+                <div class="work-thumb"><ion-icon name="chatbubbles-outline"></ion-icon></div>
+                <div class="work-body">
+                    <h3>Real-time Chat App</h3>
+                    <p>Full-stack messaging app with live updates using Socket.io, JWT auth, and MongoDB.</p>
+                    <div class="work-tags"><span>React</span><span>Node.js</span><span>Socket.io</span></div>
+                </div>
+            </article>
+            <article class="work-card">
+                <div class="work-thumb"><ion-icon name="cart-outline"></ion-icon></div>
+                <div class="work-body">
+                    <h3>MERN E-commerce</h3>
+                    <p>Scalable storefront with REST APIs, secure auth, and a responsive React frontend.</p>
+                    <div class="work-tags"><span>MongoDB</span><span>Express</span><span>Redux</span></div>
+                </div>
+            </article>
+            <article class="work-card">
+                <div class="work-thumb"><ion-icon name="git-network-outline"></ion-icon></div>
+                <div class="work-body">
+                    <h3>CI/CD Pipeline</h3>
+                    <p>Containerized deployment pipeline with Docker, Jenkins, and Kubernetes basics.</p>
+                    <div class="work-tags"><span>Docker</span><span>Jenkins</span><span>K8s</span></div>
+                </div>
+            </article>
+        </div>
+        <p class="works-note">More projects on my <a href="https://github.com/Sushant9818" target="_blank" rel="noopener">GitHub</a>.</p>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section contact" id="contact">
+        <div class="section-head">
+            <span class="eyebrow">04 — Contact</span>
+            <h2>Let's work together</h2>
+        </div>
+        <p class="contact-lead">I'm open to full-time roles and collaborations. Reach out anytime.</p>
+        <div class="contact-cards">
+            <a href="mailto:prasusan123@gmail.com" class="contact-card">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span class="contact-label">Email</span>
+                <span class="contact-value">prasusan123@gmail.com</span>
+            </a>
+            <a href="tel:+15103385528" class="contact-card">
+                <ion-icon name="call-outline"></ion-icon>
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">+1 510 338 5528</span>
+            </a>
+            <a href="https://www.linkedin.com/in/sushan-prajapati-149120186/" target="_blank" rel="noopener" class="contact-card">
+                <ion-icon name="logo-linkedin"></ion-icon>
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">Sushan Prajapati</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Sushan Prajapati. Built with HTML &amp; CSS.</p>
+    </footer>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            menuToggle.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        });
+    </script>
 </body>
 </html>
