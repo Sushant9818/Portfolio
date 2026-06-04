@@ -1,232 +1,971 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sushan Prajapati — Full Stack Developer / DevOps Engineer</title>
-    <meta name="description" content="Portfolio of Sushan Prajapati, Java Full Stack Developer and DevOps Engineer specializing in the MERN stack, Spring Boot, Docker, and Kubernetes.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushan Prajapati — Full Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0eff5;
+    --muted: #8b8a9e;
+    --accent: #7c6fff;
+    --accent2: #4ecdc4;
+    --accent3: #ff6b6b;
+    --amber: #f9c74f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* Glow blobs */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob1 { width: 500px; height: 500px; background: rgba(124,111,255,0.12); top: -100px; right: -100px; }
+  .blob2 { width: 400px; height: 400px; background: rgba(78,205,196,0.08); bottom: 200px; left: -100px; }
+  .blob3 { width: 300px; height: 300px; background: rgba(249,199,79,0.06); top: 50%; left: 40%; }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Sections */
+  section { position: relative; z-index: 1; }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+  .hero-left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  #hero-canvas {
+    flex: 0 0 420px;
+    height: 420px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  #hero-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-title {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #9b8fff; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* Section layout */
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(124,111,255,0.3);
+    border-radius: 20px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  /* Skills */
+  #skills { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .skill-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .skill-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .tag.purple { background: rgba(124,111,255,0.12); color: #b0a7ff; border-color: rgba(124,111,255,0.2); }
+  .tag.teal { background: rgba(78,205,196,0.12); color: #7de8e3; border-color: rgba(78,205,196,0.2); }
+  .tag.amber { background: rgba(249,199,79,0.12); color: #f9c74f; border-color: rgba(249,199,79,0.2); }
+  .tag.coral { background: rgba(255,107,107,0.12); color: #ff9f9f; border-color: rgba(255,107,107,0.2); }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover { border-color: rgba(124,111,255,0.4); transform: translateY(-4px); }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-card.featured {
+    grid-column: span 2;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+  .project-card.featured .project-info { flex: 1; }
+  .project-card.featured .project-visual {
+    flex: 0 0 280px;
+    height: 180px;
+    background: var(--surface2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+  .project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+  .project-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.15s;
+  }
+  .project-link:hover { gap: 10px; }
+  .project-link::after { content: '→'; }
+  .project-link:hover { color: #b0a7ff; }
+
+  /* Visual code mockup inside featured card */
+  .code-lines { padding: 1rem; width: 100%; }
+  .code-line {
+    height: 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.07);
+  }
+  .code-line.accent { background: rgba(124,111,255,0.3); width: 60%; }
+  .code-line.teal { background: rgba(78,205,196,0.2); width: 80%; }
+  .code-line.short { width: 40%; }
+  .code-line.medium { width: 70%; }
+
+  /* Experience */
+  #experience { background: var(--surface); }
+  .experience-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .experience-item:first-of-type { padding-top: 0; }
+  .experience-item:last-of-type { border-bottom: none; }
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent2);
+  }
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+  .exp-highlights { list-style: none; }
+  .exp-highlights li {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 4px 0;
+    display: flex;
+    gap: 10px;
+    line-height: 1.6;
+  }
+  .exp-highlights li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Education */
+  .edu-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .edu-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+  }
+  .edu-school {
+    font-size: 13px;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+  .edu-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .edu-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* Contact */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+  }
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+  .contact-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .contact-heading em { font-style: italic; color: var(--accent); }
+  .contact-sub {
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-size: 15px;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    transition: all 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--border2);
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Scroll animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 6rem 1.5rem 3rem; flex-direction: column; }
+    #hero-canvas { flex: none; width: 100%; max-width: 420px; height: 320px; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; flex-direction: column; }
+    .project-card.featured .project-visual { flex: none; width: 100%; }
+    .experience-item { grid-template-columns: 1fr; gap: 1rem; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
 </head>
 <body>
-    <!-- ===== Navbar ===== -->
-    <header class="navbar" id="navbar">
-        <a href="#home" class="brand">Sushan<span>.</span></a>
-        <nav>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#works">Works</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
-    </header>
 
-    <!-- ===== Hero / Home ===== -->
-    <section class="hero" id="home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-greeting">Hi, I'm Sushan</p>
-            <h1 class="hero-title">Full Stack Developer<br><span>&amp; DevOps Engineer</span></h1>
-            <p class="hero-sub">
-                I build and deploy scalable web applications with the MERN stack and core Java,
-                backed by modern DevOps practices like Docker, Jenkins, and Kubernetes.
-            </p>
-            <div class="hero-actions">
-                <a href="#works" class="btn btn-primary">View My Work</a>
-                <a href="files/SushanCv.pdf" download="Sushan_Resume.pdf" class="btn btn-ghost">Download Resume</a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://www.linkedin.com/in/sushan-prajapati-149120186/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                </a>
-                <a href="https://github.com/Sushant9818" target="_blank" rel="noopener" aria-label="GitHub">
-                    <ion-icon name="logo-github"></ion-icon>
-                </a>
-                <a href="mailto:prasusan123@gmail.com" aria-label="Email">
-                    <ion-icon name="mail-outline"></ion-icon>
-                </a>
-            </div>
-        </div>
-        <a href="#about" class="scroll-hint" aria-label="Scroll down">
-            <ion-icon name="chevron-down-outline"></ion-icon>
-        </a>
-    </section>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
 
-    <!-- ===== About ===== -->
-    <section class="section about" id="about">
-        <div class="section-head">
-            <span class="eyebrow">01 — About</span>
-            <h2>Who I am</h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>
-                    I'm a highly motivated and detail-oriented <strong>Java Full Stack Developer</strong>
-                    with hands-on experience building and deploying scalable web applications using the
-                    MERN stack and core Java technologies.
-                </p>
-                <p>
-                    I'm trained in DevOps tools and practices including <strong>Docker, Jenkins, GitHub,
-                    and Kubernetes</strong>, with a strong understanding of the software development life
-                    cycle, RESTful APIs, and microservices architecture. I'm a quick learner with strong
-                    problem-solving skills, currently seeking full-time opportunities to contribute to
-                    innovative software engineering and DevOps teams.
-                </p>
-            </div>
-            <div class="about-stats">
-                <div class="stat">
-                    <span class="stat-num">MERN</span>
-                    <span class="stat-label">Full Stack</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-num">Java</span>
-                    <span class="stat-label">Spring Boot</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-num">DevOps</span>
-                    <span class="stat-label">Docker · K8s</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-num">REST</span>
-                    <span class="stat-label">APIs · Microservices</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<nav>
+  <div class="nav-logo">SP / Portfolio</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <!-- ===== Skills ===== -->
-    <section class="section skills" id="skills">
-        <div class="section-head">
-            <span class="eyebrow">02 — Skills</span>
-            <h2>What I work with</h2>
-        </div>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <ion-icon name="code-slash-outline"></ion-icon>
-                <h3>Languages</h3>
-                <p>Java, JavaScript (ES6+), HTML, CSS, C, C++, Python</p>
-            </div>
-            <div class="skill-card">
-                <ion-icon name="logo-react"></ion-icon>
-                <h3>Frontend</h3>
-                <p>React.js, Redux, Tailwind CSS, Bootstrap, Material UI, Ant Design</p>
-            </div>
-            <div class="skill-card">
-                <ion-icon name="server-outline"></ion-icon>
-                <h3>Backend</h3>
-                <p>Node.js, Express.js, Spring Boot, REST APIs</p>
-            </div>
-            <div class="skill-card">
-                <ion-icon name="file-tray-stacked-outline"></ion-icon>
-                <h3>Databases</h3>
-                <p>MongoDB, MySQL</p>
-            </div>
-            <div class="skill-card">
-                <ion-icon name="cloud-outline"></ion-icon>
-                <h3>DevOps &amp; Tools</h3>
-                <p>Docker, Jenkins, Git, GitHub, Kubernetes (Basics), Nginx</p>
-            </div>
-            <div class="skill-card">
-                <ion-icon name="extension-puzzle-outline"></ion-icon>
-                <h3>Libraries &amp; Others</h3>
-                <p>JWT, Multer, Socket.io, Axios, GridFS, Leaflet, Formik, Yup, Bcrypt, Moment.js</p>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="hero">
+<div class="hero-left">
+  <div class="hero-tag">Available for opportunities</div>
+  <h1 class="hero-name">Sushan<br><em>Prajapati</em></h1>
+  <p class="hero-title">Full-Stack Engineer specializing in MERN & Java/Spring Boot — building scalable, production-grade web applications.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View projects</a>
+    <a href="mailto:Sushanprajapati09@gmail.com" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Full-stack projects</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">Features shipped</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">~95%</div>
+      <div class="stat-label">Lighthouse scores</div>
+    </div>
+  </div>
+</div>
+<div id="hero-canvas"><canvas id="orb"></canvas></div>
+</section>
 
-    <!-- ===== Works ===== -->
-    <section class="section works" id="works">
-        <div class="section-head">
-            <span class="eyebrow">03 — Works</span>
-            <h2>Selected projects</h2>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-heading fade-up">
+      <span class="section-tag">Expertise</span>
+      <h2 class="section-title">Technical skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="tag purple">React.js</span>
+          <span class="tag purple">Angular</span>
+          <span class="tag purple">Redux</span>
+          <span class="tag purple">TypeScript</span>
+          <span class="tag purple">Tailwind CSS</span>
+          <span class="tag purple">Material UI</span>
+          <span class="tag">HTML5/CSS3</span>
         </div>
-        <div class="works-grid">
-            <article class="work-card">
-                <div class="work-thumb"><ion-icon name="chatbubbles-outline"></ion-icon></div>
-                <div class="work-body">
-                    <h3>Real-time Chat App</h3>
-                    <p>Full-stack messaging app with live updates using Socket.io, JWT auth, and MongoDB.</p>
-                    <div class="work-tags"><span>React</span><span>Node.js</span><span>Socket.io</span></div>
-                </div>
-            </article>
-            <article class="work-card">
-                <div class="work-thumb"><ion-icon name="cart-outline"></ion-icon></div>
-                <div class="work-body">
-                    <h3>MERN E-commerce</h3>
-                    <p>Scalable storefront with REST APIs, secure auth, and a responsive React frontend.</p>
-                    <div class="work-tags"><span>MongoDB</span><span>Express</span><span>Redux</span></div>
-                </div>
-            </article>
-            <article class="work-card">
-                <div class="work-thumb"><ion-icon name="git-network-outline"></ion-icon></div>
-                <div class="work-body">
-                    <h3>CI/CD Pipeline</h3>
-                    <p>Containerized deployment pipeline with Docker, Jenkins, and Kubernetes basics.</p>
-                    <div class="work-tags"><span>Docker</span><span>Jenkins</span><span>K8s</span></div>
-                </div>
-            </article>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Backend</div>
+        <div class="skill-tags">
+          <span class="tag teal">Node.js</span>
+          <span class="tag teal">Express.js</span>
+          <span class="tag teal">Spring Boot</span>
+          <span class="tag teal">Hibernate</span>
+          <span class="tag teal">REST APIs</span>
+          <span class="tag teal">Microservices</span>
+          <span class="tag">JWT Auth</span>
         </div>
-        <p class="works-note">More projects on my <a href="https://github.com/Sushant9818" target="_blank" rel="noopener">GitHub</a>.</p>
-    </section>
-
-    <!-- ===== Contact ===== -->
-    <section class="section contact" id="contact">
-        <div class="section-head">
-            <span class="eyebrow">04 — Contact</span>
-            <h2>Let's work together</h2>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">🗄️</div>
+        <div class="skill-card-title">Databases</div>
+        <div class="skill-tags">
+          <span class="tag amber">MongoDB</span>
+          <span class="tag amber">PostgreSQL</span>
+          <span class="tag amber">MySQL</span>
+          <span class="tag amber">Oracle</span>
+          <span class="tag amber">Supabase</span>
+          <span class="tag">Redis</span>
         </div>
-        <p class="contact-lead">I'm open to full-time roles and collaborations. Reach out anytime.</p>
-        <div class="contact-cards">
-            <a href="mailto:prasusan123@gmail.com" class="contact-card">
-                <ion-icon name="mail-outline"></ion-icon>
-                <span class="contact-label">Email</span>
-                <span class="contact-value">prasusan123@gmail.com</span>
-            </a>
-            <a href="tel:+15103385528" class="contact-card">
-                <ion-icon name="call-outline"></ion-icon>
-                <span class="contact-label">Phone</span>
-                <span class="contact-value">+1 510 338 5528</span>
-            </a>
-            <a href="https://www.linkedin.com/in/sushan-prajapati-149120186/" target="_blank" rel="noopener" class="contact-card">
-                <ion-icon name="logo-linkedin"></ion-icon>
-                <span class="contact-label">LinkedIn</span>
-                <span class="contact-value">Sushan Prajapati</span>
-            </a>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">DevOps & Cloud</div>
+        <div class="skill-tags">
+          <span class="tag coral">Docker</span>
+          <span class="tag coral">Kubernetes</span>
+          <span class="tag coral">Jenkins</span>
+          <span class="tag coral">AWS</span>
+          <span class="tag coral">Azure</span>
+          <span class="tag coral">GitHub Actions</span>
+          <span class="tag">Kafka</span>
         </div>
-    </section>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">🧪</div>
+        <div class="skill-card-title">Testing & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Jest</span>
+          <span class="tag">JUnit</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Socket.io</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">Agile/Scrum</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">Languages & AI Tools</div>
+        <div class="skill-tags">
+          <span class="tag purple">Java</span>
+          <span class="tag purple">JavaScript</span>
+          <span class="tag purple">TypeScript</span>
+          <span class="tag purple">C/C++</span>
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">Cursor</span>
+          <span class="tag">Claude</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer class="footer">
-        <p>&copy; <span id="year"></span> Sushan Prajapati. Built with HTML &amp; CSS.</p>
-    </footer>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-heading fade-up">
+      <span class="section-tag">Work</span>
+      <h2 class="section-title">Featured projects</h2>
+    </div>
+    <div class="projects-grid">
 
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+      <!-- Featured -->
+      <div class="project-card featured fade-up">
+        <div class="project-info">
+          <div class="project-label">Featured · MERN Stack</div>
+          <div class="project-name">Suzuki Bike Management System</div>
+          <p class="project-desc">Full-stack inventory and bike management platform with role-based access for admin and clients. Includes complete CRUD, JWT auth, and smart search/filter — cutting navigation time by ~40%.</p>
+          <div class="project-footer">
+            <div class="project-stack">
+              <span class="tag purple">React.js</span>
+              <span class="tag teal">Node.js</span>
+              <span class="tag teal">Express.js</span>
+              <span class="tag amber">MongoDB</span>
+              <span class="tag">JWT</span>
+            </div>
+            <a href="https://github.com/Sushant9818/Bikes" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+        <div class="project-visual">
+          <div class="code-lines">
+            <div class="code-line accent"></div>
+            <div class="code-line medium"></div>
+            <div class="code-line short"></div>
+            <div class="code-line teal"></div>
+            <div class="code-line medium"></div>
+            <div class="code-line short"></div>
+            <div class="code-line accent"></div>
+            <div class="code-line"></div>
+            <div class="code-line medium"></div>
+          </div>
+        </div>
+      </div>
 
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                menuToggle.classList.remove('active');
-            });
-        });
+      <div class="project-card fade-up">
+        <div class="project-label">Full-stack · Scheduling</div>
+        <div class="project-name">Smart Scheduling System</div>
+        <p class="project-desc">Therapist-client booking platform with real-time availability matching. Eliminated booking conflicts entirely with conflict-free slot allocation logic across 12+ secure REST APIs.</p>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="tag teal">Node.js</span>
+            <span class="tag teal">Express.js</span>
+            <span class="tag amber">MongoDB</span>
+            <span class="tag">Role-based Auth</span>
+          </div>
+          <a href="https://github.com/Sushant9818/SmartScheduling" target="_blank" class="project-link">GitHub</a>
+        </div>
+      </div>
 
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 40);
-        });
-    </script>
+      <div class="project-card fade-up">
+        <div class="project-label">Real-time · WebSockets</div>
+        <div class="project-name">DHL Clone</div>
+        <p class="project-desc">Courier management system tracking 100+ mock shipments. Live updates via Socket.io reduced refresh latency by ~80%. Built with full auth, bcrypt encryption, and file upload support.</p>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="tag purple">React.js</span>
+            <span class="tag teal">Node.js</span>
+            <span class="tag amber">MongoDB</span>
+            <span class="tag coral">Socket.io</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-label">DevOps · CI/CD</div>
+        <div class="project-name">CI/CD Pipeline for MERN</div>
+        <p class="project-desc">Containerized MERN stack with Docker, automated testing and deployment through Jenkins pipelines — cutting manual deploy time by ~60%. Deployed on Kubernetes (Minikube) with auto rollouts.</p>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="tag coral">Docker</span>
+            <span class="tag coral">Jenkins</span>
+            <span class="tag coral">Kubernetes</span>
+            <span class="tag">GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" style="grid-column: span 2;">
+        <div class="project-label">Content Platform · MERN</div>
+        <div class="project-name">Blog Platform</div>
+        <p class="project-desc">Full-featured blogging platform with user registration, JWT auth, and CRUD for posts. Integrated GridFS for image/file streaming — removing all file-size bottlenecks for media uploads.</p>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="tag amber">MongoDB</span>
+            <span class="tag teal">Express.js</span>
+            <span class="tag purple">React.js</span>
+            <span class="tag teal">Node.js</span>
+            <span class="tag">GridFS</span>
+            <span class="tag">JWT</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-heading fade-up">
+      <span class="section-tag">Career</span>
+      <h2 class="section-title">Experience & Training</h2>
+    </div>
+
+    <div class="experience-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2022 — Feb 2023</div>
+        <div class="exp-company">Bitflux Technologies</div>
+      </div>
+      <div>
+        <div class="exp-role">Full Stack Developer (Intern)</div>
+        <ul class="exp-highlights">
+          <li>Built and maintained 30+ full-stack features across the SDLC using React.js, JavaScript, and Spring Boot.</li>
+          <li>Created 20+ reusable React components, reducing frontend development time by ~30%.</li>
+          <li>Integrated 10+ RESTful APIs enabling seamless frontend-backend communication.</li>
+          <li>Achieved ~95% Google Lighthouse scores with mobile-first, cross-browser responsive UIs.</li>
+          <li>Collaborated in Agile/Scrum sprints with Git-based workflows and peer code reviews.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">May 2024 — Feb 2025</div>
+        <div class="exp-company">Thoth IT Training</div>
+      </div>
+      <div>
+        <div class="exp-role">Java Full Stack Developer Training</div>
+        <ul class="exp-highlights">
+          <li>Trained in Java, Spring Boot, Hibernate, and enterprise backend with microservices architecture.</li>
+          <li>Built frontends using React.js, Angular, HTML5, CSS3; implemented CI/CD with Jenkins, Docker, Kubernetes.</li>
+          <li>Wrote unit and integration tests using JUnit and Mockito; applied production monitoring practices.</li>
+          <li>Delivered sprint-based work in Agile/Scrum team environments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;" class="fade-up">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-degree">Bachelor of Computer Engineering</div>
+          <div class="edu-school">Purbanchal University — Khwopa Engineering College, Nepal</div>
+          <div class="edu-period">Jan 2017 – Nov 2022</div>
+          <div class="edu-courses">
+            <span class="tag">Data Structures & Algorithms</span>
+            <span class="tag">Database Management</span>
+            <span class="tag">Software Engineering</span>
+            <span class="tag">Cryptography</span>
+            <span class="tag">Algorithm Analysis</span>
+            <span class="tag">Discrete Structures</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-heading fade-up">Let's build something<br><em>great together.</em></h2>
+    <p class="contact-sub fade-up">Open to full-stack engineering roles — MERN, Java/Spring Boot, cloud, or anywhere the stack is interesting.</p>
+    <div class="contact-links fade-up">
+      <a href="mailto:Sushanprajapati09@gmail.com" class="contact-item">✉ Email</a>
+      <a href="https://linkedin.com/in/sushan-prajapati-149120186" target="_blank" class="contact-item">in LinkedIn</a>
+      <a href="https://github.com/Sushant9818" target="_blank" class="contact-item">⌥ GitHub</a>
+      <a href="https://sushant9818.github.io/Sushan" target="_blank" class="contact-item">↗ Website</a>
+    </div>
+    <div class="fade-up" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">
+      Albany, CA · (510) 338-5528
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Sushan Prajapati — Built with purpose.</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* ===== Hero particle sphere (vanilla canvas, no deps) ===== */
+  (function () {
+    const canvas = document.getElementById('orb');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const palette = ['#7c6fff', '#4ecdc4', '#f9c74f', '#ff6b6b'];
+
+    let w, h, cx, cy, R, dpr;
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = rect.width; h = rect.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cx = w / 2; cy = h / 2;
+      R = Math.min(w, h) * 0.38;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Fibonacci sphere of points
+    const N = 320;
+    const pts = [];
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i / (N - 1)) * 2;
+      const r = Math.sqrt(1 - y * y);
+      const phi = i * Math.PI * (3 - Math.sqrt(5));
+      pts.push({
+        x: Math.cos(phi) * r,
+        y: y,
+        z: Math.sin(phi) * r,
+        c: palette[i % palette.length]
+      });
+    }
+
+    let ry = 0, rx = 0, mx = 0, my = 0;
+    canvas.parentElement.addEventListener('mousemove', e => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      mx = (e.clientX - rect.left - cx) / cx;
+      my = (e.clientY - rect.top - cy) / cy;
+    });
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      ry += 0.0035 + mx * 0.01;
+      rx += my * 0.004;
+      const cosY = Math.cos(ry), sinY = Math.sin(ry);
+      const cosX = Math.cos(rx), sinX = Math.sin(rx);
+
+      const proj = pts.map(p => {
+        let x = p.x * cosY - p.z * sinY;
+        let z = p.x * sinY + p.z * cosY;
+        let y = p.y * cosX - z * sinX;
+        z = p.y * sinX + z * cosX;
+        const scale = 1 / (2 - z); // perspective
+        return {
+          sx: cx + x * R * scale,
+          sy: cy + y * R * scale,
+          depth: z,
+          size: (1.4 + z) * 1.6,
+          c: p.c
+        };
+      }).sort((a, b) => a.depth - b.depth);
+
+      // faint connecting lines for near points
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < proj.length; i++) {
+        const a = proj[i];
+        for (let j = i + 1; j < Math.min(i + 6, proj.length); j++) {
+          const b = proj[j];
+          const dx = a.sx - b.sx, dy = a.sy - b.sy;
+          const d = Math.hypot(dx, dy);
+          if (d < 42) {
+            ctx.strokeStyle = 'rgba(124,111,255,' + (0.12 * (1 - d / 42)) + ')';
+            ctx.beginPath();
+            ctx.moveTo(a.sx, a.sy);
+            ctx.lineTo(b.sx, b.sy);
+            ctx.stroke();
+          }
+        }
+      }
+
+      proj.forEach(p => {
+        const alpha = 0.35 + (p.depth + 1) / 2 * 0.65;
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = p.c;
+        ctx.beginPath();
+        ctx.arc(p.sx, p.sy, Math.max(0.6, p.size), 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    frame();
+  })();
+</script>
 </body>
 </html>
