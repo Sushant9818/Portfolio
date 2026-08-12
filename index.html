@@ -96,20 +96,52 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 8rem 4rem 4rem;
-    max-width: 1100px;
+    padding: 8rem 2.5rem 4rem;
+    max-width: 1720px;
     margin: 0 auto;
-    gap: 3rem;
+    gap: 2rem;
   }
-  .hero-left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .hero-left { flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; margin-left: -1.5rem; }
   #hero-canvas {
-    flex: 0 0 420px;
-    height: 420px;
-    border-radius: 24px;
+    flex: 1 1 620px;
+    width: 880px;
+    max-width: 880px;
+    height: 680px;
+    margin-left: 13rem;
+    border-radius: 28px;
     overflow: hidden;
     position: relative;
+    border: 1px solid var(--border2);
+    box-shadow: 0 0 80px rgba(124,111,255,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 0.5rem;
+    gap: 0.5rem;
   }
   #hero-canvas canvas { display: block; width: 100% !important; height: 100% !important; }
+  .hero-coretech-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .hero-coretech-sub {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    max-width: 340px;
+    line-height: 1.5;
+  }
+  .hero-orbit-scale {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.1, 1.4);
+    transform-origin: center center;
+  }
   .hero-tag {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
@@ -224,6 +256,91 @@
     font-family: 'DM Serif Display', serif;
     font-size: 2.5rem;
     line-height: 1.1;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 480px;
+  }
+
+  /* Core Technologies — 3D orbit */
+  .coretech-scene {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    height: 640px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .coretech-stars {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .coretech-orbit {
+    position: relative;
+    width: 580px;
+    height: 580px;
+    transform-style: preserve-3d;
+    transform: perspective(1400px) rotateX(58deg);
+  }
+  .orbit-guide {
+    position: absolute;
+    top: 50%; left: 50%;
+    border-radius: 50%;
+    border: 1px dashed;
+    transform: translate(-50%, -50%);
+  }
+  .orbit-ring {
+    position: absolute;
+    inset: 0;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .orbit-anchor {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+  }
+  .orbit-place { position: absolute; top: 0; left: 0; }
+  .orbit-fix { position: absolute; top: 0; left: 0; }
+  .tech-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transform: translate(-50%, -50%);
+  }
+  .tech-node-badge {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 2px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 18px rgba(124,111,255,0.15);
+  }
+  .tech-node-badge img { width: 26px; height: 26px; display: block; }
+  .tech-node-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    white-space: nowrap;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  }
+
+  @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+  @media (max-width: 768px) {
+    .coretech-scene { height: 460px; }
+    .coretech-orbit { transform: perspective(1000px) rotateX(58deg) scale(0.62); }
   }
 
   /* Skills */
@@ -366,6 +483,34 @@
   .project-link:hover { gap: 10px; }
   .project-link::after { content: '→'; }
   .project-link:hover { color: #b0a7ff; }
+  .project-link.demo { color: var(--accent2); }
+  .project-link.demo:hover { color: #7de8e3; }
+  .project-links { display: flex; gap: 1rem; }
+  .project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    background: rgba(124,111,255,0.15);
+    color: #b0a7ff;
+    border: 1px solid rgba(124,111,255,0.25);
+  }
+  .exp-badge {
+    display: inline-flex;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    background: rgba(78,205,196,0.15);
+    color: #7de8e3;
+    border: 1px solid rgba(78,205,196,0.25);
+  }
 
   /* Visual code mockup inside featured card */
   .code-lines { padding: 1rem; width: 100%; }
@@ -528,7 +673,8 @@
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     #hero { padding: 6rem 1.5rem 3rem; flex-direction: column; }
-    #hero-canvas { flex: none; width: 100%; max-width: 420px; height: 320px; }
+    #hero-canvas { flex: none; width: 100%; max-width: 460px; height: 480px; }
+    .hero-orbit-scale { transform: scale(0.6); }
     .section-inner { padding: 4rem 1.5rem; }
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.featured { grid-column: span 1; flex-direction: column; }
@@ -559,10 +705,11 @@
 <div class="hero-left">
   <div class="hero-tag">Available for opportunities</div>
   <h1 class="hero-name">Sushan<br><em>Prajapati</em></h1>
-  <p class="hero-title">Full-Stack Engineer specializing in MERN & Java/Spring Boot — building scalable, production-grade web applications.</p>
+  <p class="hero-title">Full-Stack Engineer specializing in JavaScript, React.js & Node.js — building scalable, production-grade web applications.</p>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View projects</a>
     <a href="mailto:Sushanprajapati09@gmail.com" class="btn btn-outline">Get in touch</a>
+    <a href="files/Sushan_Prajapati_Resume.pdf" target="_blank" class="btn btn-outline">View Resume</a>
   </div>
   <div class="hero-stats">
     <div class="stat-item">
@@ -570,7 +717,7 @@
       <div class="stat-label">Years experience</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">5</div>
+      <div class="stat-num">6</div>
       <div class="stat-label">Full-stack projects</div>
     </div>
     <div class="stat-item">
@@ -583,7 +730,182 @@
     </div>
   </div>
 </div>
-<div id="hero-canvas"><canvas id="orb"></canvas></div>
+<div id="hero-canvas">
+  <div class="hero-coretech-title">Core Technologies</div>
+  <p class="hero-coretech-sub">Tools and languages I use daily to build, ship, and maintain full-stack JavaScript applications.</p>
+  <div class="hero-orbit-scale">
+    <div class="coretech-scene" style="width:680px;height:640px;">
+      <canvas class="coretech-stars" id="hero-orbit-stars"></canvas>
+      <div class="coretech-orbit">
+        <div class="orbit-guide" style="width:260px;height:260px;border-color:rgba(124,111,255,0.25);"></div>
+        <div class="orbit-guide" style="width:420px;height:420px;border-color:rgba(78,205,196,0.2);"></div>
+        <div class="orbit-guide" style="width:580px;height:580px;border-color:rgba(249,199,79,0.18);"></div>
+
+        <!-- Ring 1 -->
+        <div class="orbit-ring" style="animation-name: spin-cw; animation-duration: 32s;">
+          <div class="orbit-anchor" style="transform: rotate(0deg);">
+            <div class="orbit-place" style="transform: translate(130px, 0);">
+              <div class="orbit-fix" style="transform: rotate(0deg);">
+                <div class="tech-node" style="animation: spin-ccw 32s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React.js" loading="lazy"></div>
+                  <div class="tech-node-label">REACT.JS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(72deg);">
+            <div class="orbit-place" style="transform: translate(130px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-72deg);">
+                <div class="tech-node" style="animation: spin-ccw 32s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js" loading="lazy"></div>
+                  <div class="tech-node-label">NODE.JS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(144deg);">
+            <div class="orbit-place" style="transform: translate(130px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-144deg);">
+                <div class="tech-node" style="animation: spin-ccw 32s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" loading="lazy"></div>
+                  <div class="tech-node-label">JAVASCRIPT</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(216deg);">
+            <div class="orbit-place" style="transform: translate(130px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-216deg);">
+                <div class="tech-node" style="animation: spin-ccw 32s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/express/FFFFFF" alt="Express.js" loading="lazy"></div>
+                  <div class="tech-node-label">EXPRESS.JS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(288deg);">
+            <div class="orbit-place" style="transform: translate(130px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-288deg);">
+                <div class="tech-node" style="animation: spin-ccw 32s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB" loading="lazy"></div>
+                  <div class="tech-node-label">MONGODB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ring 2 -->
+        <div class="orbit-ring" style="animation-name: spin-ccw; animation-duration: 46s;">
+          <div class="orbit-anchor" style="transform: rotate(36deg);">
+            <div class="orbit-place" style="transform: translate(210px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-36deg);">
+                <div class="tech-node" style="animation: spin-cw 46s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/git/F05032" alt="Git" loading="lazy"></div>
+                  <div class="tech-node-label">GIT</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(108deg);">
+            <div class="orbit-place" style="transform: translate(210px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-108deg);">
+                <div class="tech-node" style="animation: spin-cw 46s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" loading="lazy"></div>
+                  <div class="tech-node-label">GITHUB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(180deg);">
+            <div class="orbit-place" style="transform: translate(210px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-180deg);">
+                <div class="tech-node" style="animation: spin-cw 46s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy"></div>
+                  <div class="tech-node-label">DOCKER</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(252deg);">
+            <div class="orbit-place" style="transform: translate(210px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-252deg);">
+                <div class="tech-node" style="animation: spin-cw 46s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/redux/764ABC" alt="Redux" loading="lazy"></div>
+                  <div class="tech-node-label">REDUX</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(324deg);">
+            <div class="orbit-place" style="transform: translate(210px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-324deg);">
+                <div class="tech-node" style="animation: spin-cw 46s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/tailwindcss/38BDF8" alt="Tailwind CSS" loading="lazy"></div>
+                  <div class="tech-node-label">TAILWIND</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ring 3 -->
+        <div class="orbit-ring" style="animation-name: spin-cw; animation-duration: 60s;">
+          <div class="orbit-anchor" style="transform: rotate(18deg);">
+            <div class="orbit-place" style="transform: translate(290px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-18deg);">
+                <div class="tech-node" style="animation: spin-ccw 60s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" loading="lazy"></div>
+                  <div class="tech-node-label">AWS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(90deg);">
+            <div class="orbit-place" style="transform: translate(290px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-90deg);">
+                <div class="tech-node" style="animation: spin-ccw 60s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/jest/C21325" alt="Jest" loading="lazy"></div>
+                  <div class="tech-node-label">JEST</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(162deg);">
+            <div class="orbit-place" style="transform: translate(290px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-162deg);">
+                <div class="tech-node" style="animation: spin-ccw 60s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman" loading="lazy"></div>
+                  <div class="tech-node-label">POSTMAN</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(234deg);">
+            <div class="orbit-place" style="transform: translate(290px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-234deg);">
+                <div class="tech-node" style="animation: spin-ccw 60s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/visualstudiocode/007ACC" alt="VS Code" loading="lazy"></div>
+                  <div class="tech-node-label">VS CODE</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orbit-anchor" style="transform: rotate(306deg);">
+            <div class="orbit-place" style="transform: translate(290px, 0);">
+              <div class="orbit-fix" style="transform: rotate(-306deg);">
+                <div class="tech-node" style="animation: spin-ccw 60s linear infinite;">
+                  <div class="tech-node-badge"><img src="https://cdn.simpleicons.org/socketdotio/FFFFFF" alt="Socket.io" loading="lazy"></div>
+                  <div class="tech-node-label">SOCKET.IO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- SKILLS -->
@@ -599,11 +921,10 @@
         <div class="skill-card-title">Frontend</div>
         <div class="skill-tags">
           <span class="tag purple">React.js</span>
-          <span class="tag purple">Angular</span>
+          <span class="tag purple">JavaScript (ES6+)</span>
           <span class="tag purple">Redux</span>
-          <span class="tag purple">TypeScript</span>
           <span class="tag purple">Tailwind CSS</span>
-          <span class="tag purple">Material UI</span>
+          <span class="tag">Material UI</span>
           <span class="tag">HTML5/CSS3</span>
         </div>
       </div>
@@ -613,11 +934,10 @@
         <div class="skill-tags">
           <span class="tag teal">Node.js</span>
           <span class="tag teal">Express.js</span>
-          <span class="tag teal">Spring Boot</span>
-          <span class="tag teal">Hibernate</span>
           <span class="tag teal">REST APIs</span>
           <span class="tag teal">Microservices</span>
           <span class="tag">JWT Auth</span>
+          <span class="tag">Open API</span>
         </div>
       </div>
       <div class="skill-card fade-up">
@@ -625,10 +945,7 @@
         <div class="skill-card-title">Databases</div>
         <div class="skill-tags">
           <span class="tag amber">MongoDB</span>
-          <span class="tag amber">PostgreSQL</span>
           <span class="tag amber">MySQL</span>
-          <span class="tag amber">Oracle</span>
-          <span class="tag amber">Supabase</span>
           <span class="tag">Redis</span>
         </div>
       </div>
@@ -640,9 +957,7 @@
           <span class="tag coral">Kubernetes</span>
           <span class="tag coral">Jenkins</span>
           <span class="tag coral">AWS</span>
-          <span class="tag coral">Azure</span>
           <span class="tag coral">GitHub Actions</span>
-          <span class="tag">Kafka</span>
         </div>
       </div>
       <div class="skill-card fade-up">
@@ -650,10 +965,8 @@
         <div class="skill-card-title">Testing & Tools</div>
         <div class="skill-tags">
           <span class="tag">Jest</span>
-          <span class="tag">JUnit</span>
           <span class="tag">Postman</span>
           <span class="tag">Socket.io</span>
-          <span class="tag">Kafka</span>
           <span class="tag">Agile/Scrum</span>
         </div>
       </div>
@@ -661,10 +974,7 @@
         <div class="skill-card-icon">🤖</div>
         <div class="skill-card-title">Languages & AI Tools</div>
         <div class="skill-tags">
-          <span class="tag purple">Java</span>
-          <span class="tag purple">JavaScript</span>
-          <span class="tag purple">TypeScript</span>
-          <span class="tag purple">C/C++</span>
+          <span class="tag purple">JavaScript (ES6+)</span>
           <span class="tag">GitHub Copilot</span>
           <span class="tag">Cursor</span>
           <span class="tag">Claude</span>
@@ -683,21 +993,22 @@
     </div>
     <div class="projects-grid">
 
-      <!-- Featured -->
+      <!-- Antic-Cafe FEATURED -->
       <div class="project-card featured fade-up">
         <div class="project-info">
-          <div class="project-label">Featured · MERN Stack</div>
-          <div class="project-name">Suzuki Bike Management System</div>
-          <p class="project-desc">Full-stack inventory and bike management platform with role-based access for admin and clients. Includes complete CRUD, JWT auth, and smart search/filter — cutting navigation time by ~40%.</p>
+          <div class="project-badge">⭐ Flagship Project</div>
+          <div class="project-name">Antic-Cafe</div>
+          <p class="project-desc">Full-stack restaurant ordering & operations platform. Role-based access across 6 roles (Admin, Waiter, Kitchen, Cashier, Driver, Customer), custom auth flows, live kitchen dashboards, and multi-gateway payment integration.</p>
           <div class="project-footer">
             <div class="project-stack">
+              <span class="tag purple">JavaScript (ES6+)</span>
               <span class="tag purple">React.js</span>
               <span class="tag teal">Node.js</span>
-              <span class="tag teal">Express.js</span>
-              <span class="tag amber">MongoDB</span>
-              <span class="tag">JWT</span>
             </div>
-            <a href="https://github.com/Sushant9818/Bikes" target="_blank" class="project-link">GitHub</a>
+            <div class="project-links">
+              <a href="https://github.com/Sushant9818/ANTICCAFE" target="_blank" class="project-link">GitHub</a>
+              <a href="https://anticcafe-9ch6.vercel.app" target="_blank" class="project-link demo">Live</a>
+            </div>
           </div>
         </div>
         <div class="project-visual">
@@ -716,6 +1027,25 @@
       </div>
 
       <div class="project-card fade-up">
+        <div class="project-label">MERN Stack · Inventory</div>
+        <div class="project-name">Suzuki Bike Management System</div>
+        <p class="project-desc">Full-stack inventory and bike management platform with role-based access for admin and clients. Includes complete CRUD, JWT auth, and smart search/filter — cutting navigation time by ~40%.</p>
+        <div class="project-footer">
+          <div class="project-stack">
+            <span class="tag purple">React.js</span>
+            <span class="tag teal">Node.js</span>
+            <span class="tag teal">Express.js</span>
+            <span class="tag amber">MongoDB</span>
+            <span class="tag">JWT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Sushant9818/Bikes" target="_blank" class="project-link">GitHub</a>
+            <a href="https://suzuki-bike-nextjs.vercel.app" target="_blank" class="project-link demo">Live</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
         <div class="project-label">Full-stack · Scheduling</div>
         <div class="project-name">Smart Scheduling System</div>
         <p class="project-desc">Therapist-client booking platform with real-time availability matching. Eliminated booking conflicts entirely with conflict-free slot allocation logic across 12+ secure REST APIs.</p>
@@ -726,7 +1056,10 @@
             <span class="tag amber">MongoDB</span>
             <span class="tag">Role-based Auth</span>
           </div>
-          <a href="https://github.com/Sushant9818/SmartScheduling" target="_blank" class="project-link">GitHub</a>
+          <div class="project-links">
+            <a href="https://github.com/Sushant9818/SmartScheduling" target="_blank" class="project-link">GitHub</a>
+            <a href="https://smart-scheduling-eta.vercel.app" target="_blank" class="project-link demo">Live</a>
+          </div>
         </div>
       </div>
 
@@ -747,13 +1080,12 @@
       <div class="project-card fade-up">
         <div class="project-label">DevOps · CI/CD</div>
         <div class="project-name">CI/CD Pipeline for MERN</div>
-        <p class="project-desc">Containerized MERN stack with Docker, automated testing and deployment through Jenkins pipelines — cutting manual deploy time by ~60%. Deployed on Kubernetes (Minikube) with auto rollouts.</p>
+        <p class="project-desc">Containerized MERN stack, automated testing and deployment pipelines — cutting manual deploy time by ~60%. Automated rollout strategies for zero-downtime releases.</p>
         <div class="project-footer">
           <div class="project-stack">
-            <span class="tag coral">Docker</span>
-            <span class="tag coral">Jenkins</span>
-            <span class="tag coral">Kubernetes</span>
-            <span class="tag">GitHub Actions</span>
+            <span class="tag purple">JavaScript (ES6+)</span>
+            <span class="tag purple">React.js</span>
+            <span class="tag teal">Node.js</span>
           </div>
         </div>
       </div>
@@ -788,13 +1120,30 @@
 
     <div class="experience-item fade-up">
       <div class="exp-meta">
+        <div class="exp-period">Feb 2026 — Present</div>
+        <div class="exp-company">NANC Community Platform</div>
+      </div>
+      <div>
+        <div class="exp-role">Full Stack Developer <span class="exp-badge">Volunteer</span></div>
+        <ul class="exp-highlights">
+          <li>Built a full-stack community platform for a 501(c)(3) nonprofit with three user roles (public, member, admin) using React.js and route-level auth guards.</li>
+          <li>Architected a centralized API client with silent JWT token refresh, request deduplication, and 8+ domain-organized feature endpoints.</li>
+          <li>Designed an end-to-end facility rental reservation system with live pricing, multi-step form, custom calendar/time pickers, and dynamic booking logic.</li>
+          <li>Built a reusable UI library of 50+ React components with consistent design tokens across all surfaces.</li>
+          <li>Fixed a critical auth bug where role-string casing mismatches silently broke admin login.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item fade-up">
+      <div class="exp-meta">
         <div class="exp-period">Jan 2022 — Feb 2023</div>
         <div class="exp-company">Bitflux Technologies</div>
       </div>
       <div>
         <div class="exp-role">Full Stack Developer (Intern)</div>
         <ul class="exp-highlights">
-          <li>Built and maintained 30+ full-stack features across the SDLC using React.js, JavaScript, and Spring Boot.</li>
+          <li>Built and maintained 30+ full-stack features across the SDLC using React.js, JavaScript, and Node.js.</li>
           <li>Created 20+ reusable React components, reducing frontend development time by ~30%.</li>
           <li>Integrated 10+ RESTful APIs enabling seamless frontend-backend communication.</li>
           <li>Achieved ~95% Google Lighthouse scores with mobile-first, cross-browser responsive UIs.</li>
@@ -809,11 +1158,11 @@
         <div class="exp-company">Thoth IT Training</div>
       </div>
       <div>
-        <div class="exp-role">Java Full Stack Developer Training</div>
+        <div class="exp-role">JavaScript Full Stack Developer Training</div>
         <ul class="exp-highlights">
-          <li>Trained in Java, Spring Boot, Hibernate, and enterprise backend with microservices architecture.</li>
-          <li>Built frontends using React.js, Angular, HTML5, CSS3; implemented CI/CD with Jenkins, Docker, Kubernetes.</li>
-          <li>Wrote unit and integration tests using JUnit and Mockito; applied production monitoring practices.</li>
+          <li>Trained in JavaScript, Node.js, Express.js, and enterprise backend architecture.</li>
+          <li>Built frontends using React.js, HTML5, CSS3; implemented CI/CD pipelines for automated testing and deployment.</li>
+          <li>Wrote unit and integration tests using Jest; applied production monitoring practices.</li>
           <li>Delivered sprint-based work in Agile/Scrum team environments.</li>
         </ul>
       </div>
@@ -844,7 +1193,7 @@
 <section id="contact">
   <div class="contact-inner">
     <h2 class="contact-heading fade-up">Let's build something<br><em>great together.</em></h2>
-    <p class="contact-sub fade-up">Open to full-stack engineering roles — MERN, Java/Spring Boot, cloud, or anywhere the stack is interesting.</p>
+    <p class="contact-sub fade-up">Open to full-stack engineering roles — JavaScript, React.js, Node.js, or anywhere the stack is interesting.</p>
     <div class="contact-links fade-up">
       <a href="mailto:Sushanprajapati09@gmail.com" class="contact-item">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ea4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
@@ -858,9 +1207,9 @@
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.31-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.81 5.65-5.49 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
         GitHub
       </a>
-      <a href="#hero" class="contact-item">
+      <a href="https://portfolio-one-mu-e26t50z4cf.vercel.app" target="_blank" class="contact-item">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg>
-        Website
+        Portfolio
       </a>
     </div>
     <div class="fade-up" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">
@@ -882,103 +1231,52 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  /* ===== Hero particle sphere (vanilla canvas, no deps) ===== */
-  (function () {
-    const canvas = document.getElementById('orb');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const palette = ['#7c6fff', '#4ecdc4', '#f9c74f', '#ff6b6b'];
-
-    let w, h, cx, cy, R, dpr;
-    function resize() {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = rect.width; h = rect.height;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cx = w / 2; cy = h / 2;
-      R = Math.min(w, h) * 0.38;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Fibonacci sphere of points
-    const N = 320;
-    const pts = [];
-    for (let i = 0; i < N; i++) {
-      const y = 1 - (i / (N - 1)) * 2;
-      const r = Math.sqrt(1 - y * y);
-      const phi = i * Math.PI * (3 - Math.sqrt(5));
-      pts.push({
-        x: Math.cos(phi) * r,
-        y: y,
-        z: Math.sin(phi) * r,
-        c: palette[i % palette.length]
-      });
-    }
-
-    let ry = 0, rx = 0, mx = 0, my = 0;
-    canvas.parentElement.addEventListener('mousemove', e => {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      mx = (e.clientX - rect.left - cx) / cx;
-      my = (e.clientY - rect.top - cy) / cy;
-    });
-
-    function frame() {
-      ctx.clearRect(0, 0, w, h);
-      ry += 0.0035 + mx * 0.01;
-      rx += my * 0.004;
-      const cosY = Math.cos(ry), sinY = Math.sin(ry);
-      const cosX = Math.cos(rx), sinX = Math.sin(rx);
-
-      const proj = pts.map(p => {
-        let x = p.x * cosY - p.z * sinY;
-        let z = p.x * sinY + p.z * cosY;
-        let y = p.y * cosX - z * sinX;
-        z = p.y * sinX + z * cosX;
-        const scale = 1 / (2 - z); // perspective
-        return {
-          sx: cx + x * R * scale,
-          sy: cy + y * R * scale,
-          depth: z,
-          size: (1.4 + z) * 1.6,
-          c: p.c
-        };
-      }).sort((a, b) => a.depth - b.depth);
-
-      // faint connecting lines for near points
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < proj.length; i++) {
-        const a = proj[i];
-        for (let j = i + 1; j < Math.min(i + 6, proj.length); j++) {
-          const b = proj[j];
-          const dx = a.sx - b.sx, dy = a.sy - b.sy;
-          const d = Math.hypot(dx, dy);
-          if (d < 42) {
-            ctx.strokeStyle = 'rgba(124,111,255,' + (0.12 * (1 - d / 42)) + ')';
-            ctx.beginPath();
-            ctx.moveTo(a.sx, a.sy);
-            ctx.lineTo(b.sx, b.sy);
-            ctx.stroke();
-          }
-        }
-      }
-
-      proj.forEach(p => {
-        const alpha = 0.35 + (p.depth + 1) / 2 * 0.65;
-        ctx.globalAlpha = alpha;
-        ctx.fillStyle = p.c;
-        ctx.beginPath();
-        ctx.arc(p.sx, p.sy, Math.max(0.6, p.size), 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(frame);
-    }
-    frame();
-  })();
 </script>
+
+<!-- CORE TECHNOLOGIES STARFIELD -->
+<script>
+document.querySelectorAll('.coretech-stars').forEach((canvas) => {
+  const ctx = canvas.getContext('2d');
+  const scene = canvas.parentElement;
+  let w, h, dpr, stars = [];
+
+  function resize() {
+    const rect = scene.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = rect.width; h = rect.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.floor((w * h) / 3200);
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2 + 0.3,
+      a: Math.random() * Math.PI * 2,
+      speed: 0.4 + Math.random() * 0.8,
+    }));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+  function frame() {
+    t += 0.016;
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => {
+      const twinkle = 0.4 + 0.6 * Math.abs(Math.sin(t * s.speed + s.a));
+      ctx.globalAlpha = twinkle;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  frame();
+});
+</script>
+
 </body>
 </html>
